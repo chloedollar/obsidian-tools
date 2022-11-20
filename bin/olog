@@ -1,0 +1,10 @@
+#!/bin/bash
+. "$OBSIDIAN_TOOLS_REPO/obsidian_tools_common.sh"
+
+if [ "$1" == "-h" ] ; then
+  echo "Prompts for a log entry then appends it to Obsidian daily note"
+  exit 0
+fi
+
+read -r -p "Log Entry: " user_input
+echo -e "\n$user_input" >> "$OBSIDIAN_TOOLS_DAILY_NOTE_LOCATION"
