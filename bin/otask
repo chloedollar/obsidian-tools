@@ -1,0 +1,17 @@
+#!/bin/bash
+. "$OBSIDIAN_TOOLS_REPO/obsidian_tools_common.sh"
+
+if [ "$1" == "-h" ] ; then
+  echo "Prompts for a task description then adds it under $OBSIDIAN_TOOLS_TASK_HEADER"
+  echo "If used with -w , adds under $OBSIDIAN_TOOLS_WORK_TASK_HEADER"
+  exit 0
+fi
+
+if [ "$1" == "-w" ] ; then
+  todo_header="$OBSIDIAN_TOOLS_WORK_TASK_HEADER"
+else
+  todo_header="$OBSIDIAN_TOOLS_TASK_HEADER"
+fi
+
+read -r -p "Task: " user_input
+sed -i'' -e 's/'"$todo_header"'/'"$todo_header\n- [ ] $user_input"'/g' "$OBSIDIAN_TOOLS_DAILY_NOTE_LOCATION"
